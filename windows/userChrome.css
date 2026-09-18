@@ -486,3 +486,89 @@ toolbar:not([customizing]) > #nav-bar-customization-target {
 	margin-inline: 0px !important;
 	border-left-style: solid !important;
 }
+
+/* =====================================================================
+   VerticalFox - Firefox 157 compatibility patch (auto-appended)
+   Fx157 restructured the sidebar:
+   #browser > #sidebar-container( > sidebar-main launcher ) > #sidebar-launcher-splitter
+           > #sidebar-box > .sidebar-browser-stack > browser#sidebar
+   The old sidebar (#sidebar-box) is display:none unless
+   sidebar.verticalTabs=true (enforced via user.js).
+   ===================================================================== */
+
+/* 1. The old sidebar only exists with native vertical tabs enabled */
+
+/* 2. Hide the new sidebar launcher strip and its splitter */
+#sidebar-container,
+#sidebar-launcher-splitter {
+   display: none !important;
+}
+
+/* 3. Keep container from reserving stale width; let #sidebar-box clamp it */
+#sidebar-container {
+   width: auto !important;
+   min-width: 0 !important;
+   max-width: none !important;
+}
+
+/* 4. Fx157: #sidebar is no longer a direct child of #sidebar-box
+      (wrapped in .sidebar-browser-stack) -> descendant selector needed */
+#sidebar-box:hover #sidebar {
+   min-width: var(--uc-sidebar-hover-width) !important;
+   transition-delay: 0ms !important;
+}
+
+/* 5. Prevent the new containers from clipping the hover-expanded overlay */
+#sidebar-container,
+#sidebar-box,
+#sidebar-box .sidebar-browser-stack {
+   overflow: visible !important;
+}
+
+/* 6. Window controls: they may move into the hidden launcher strip in
+      vertical-tabs mode; force the nav-bar copy visible and pin right */
+#nav-bar .titlebar-buttonbox-container {
+   visibility: visible !important;
+   display: block !important;
+   position: absolute !important;
+   top: 1px !important;
+   left: unset !important;
+   right: 0 !important;
+}
+
+/* 7. Fx157 renders a panel header INSIDE the webext-panels document
+      (webext-panels.xhtml > #sidebar-panel-header) -> hide it too */
+#sidebar-panel-header {
+   display: none !important;
+}
+
+/* 8. Kill the Dev Edition toolbox texture so the flat --bg shows */
+#navigator-toolbox > toolbar,
+#navigator-toolbox {
+   background-image: none !important;
+}
+
+/* 9. Fx157: urlbar internals refactored (moz-urlbar custom element,
+      #urlbar-background ID became div.urlbar-background class) */
+.urlbar-background {
+   background: var(--urlbar-bg) !important;
+   background-image: none !important;
+   border-radius: 30px !important;
+   border: 0 !important;
+   box-shadow: none !important;
+}
+#urlbar:hover .urlbar-background {
+   outline: 1px solid var(--urlbar-outline) !important;
+}
+#urlbar[focused="true"] .urlbar-background {
+   box-shadow: inset 1px 1px 1px 0px rgba(0, 0, 0, 0.35) !important;
+}
+#urlbar[breakout][breakout-extend] .urlbar-background {
+   background: var(--urldrop-bg) !important;
+   border-radius: 15px !important;
+}
+.urlbar-input-container {
+   height: var(--urlbar-height) !important;
+   padding-block: 0px !important;
+   padding-inline: 0px !important;
+}
