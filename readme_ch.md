@@ -9,6 +9,12 @@
 
 > [!NOTE]
 > 感谢选择我的主题。然而，由于 Firefox CSS selectors 随着 Firefox 更新变得越来越离谱，我将不再积极维护该项目。仍然欢迎大家提 PR 我会及时处理。您也可以在[这里](https://github.com/stars/christorange/lists/firefoxcss)找到很多其他非常优秀的主题。
+
+> [!IMPORTANT]
+> **Firefox 157+ 兼容说明(2026-09)**:`windows/userChrome.css` 已包含新版侧边栏/地址栏
+> 的适配补丁，并且**必须把 `windows/user.js` 一并复制到 profile 根目录**——它负责开启
+> `sidebar.verticalTabs`，否则旧侧边栏(即 Sidebery 的宿主)在 Firefox 157 中根本不会显示。
+> 详细原理、部署脚本与调试工具见 [`maintenance/MAINTENANCE.md`](maintenance/MAINTENANCE.md)。
 # 安装指南
 
 1. 安装 [Sidebery](https://addons.mozilla.org/en-US/firefox/addon/sidebery/) 插件。

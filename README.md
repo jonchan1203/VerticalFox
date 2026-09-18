@@ -15,6 +15,14 @@ Get an Edge like auto-hide vertical tabs bar on Firefox! Powerd by Sidebery, you
 > [!NOTE]
 > Thank you for choosing my theme. However, due to the more and more annoying and absurd design of Firefox CSS selectors along with Firefox updates, I am no longer actively maintaining this project. PRs are still welcome and I will reponse in time. You can also find some very excellent themes projects [here](https://github.com/stars/christorange/lists/firefoxcss).
 
+> [!IMPORTANT]
+> **Firefox 157+ compatibility (2026-09)**: `windows/userChrome.css` now ships with
+> patches for the reworked sidebar / urlbar. You **must also copy `windows/user.js`
+> into the profile root** (it enables `sidebar.verticalTabs`, without which the
+> legacy sidebar — and therefore Sidebery — cannot be shown at all).
+> See [`maintenance/MAINTENANCE.md`](maintenance/MAINTENANCE.md) for details,
+> deployment scripts and debugging tools.
+
 
 *The auto hide also works on Tree Style Tabs, but you may need to adjust the css to achieve the best look.*
 
