@@ -572,3 +572,39 @@ toolbar:not([customizing]) > #nav-bar-customization-target {
    padding-block: 0px !important;
    padding-inline: 0px !important;
 }
+
+/* 修复：最大化时窗口关闭按钮无法在屏幕最右上角激活 */
+/* fix：when in full screen,close button cannot be activated on top-right mouse hover */
+:root[sizemode="maximized"] #navigator-toolbox:not([inFullscreen]) #TabsToolbar .titlebar-buttonbox-container,
+:root[sizemode="maximized"] #nav-bar .titlebar-buttonbox-container {
+   top: 0 !important;
+   right: 0 !important;
+   padding-top: 0 !important;
+   padding-right: 0 !important;
+   margin: 0 !important;
+}
+
+:root[sizemode="maximized"] .titlebar-buttonbox {
+   padding-right: 0 !important;
+   margin-right: 0 !important;
+}
+
+:root[sizemode="maximized"] .titlebar-buttonbox * {
+   border-radius: 0 !important;
+   width: 35px !important;
+   height: 40px !important;
+   margin: 0 !important;
+}
+
+:root[sizemode="maximized"] .titlebar-close {
+   border-top-right-radius: 0 !important;
+   border-bottom-right-radius: 0 !important;
+}
+
+/* 修复：按下Alt键时窗口按钮视觉颜色变深变粗 */
+/* fix：window buttons are re-drawn when Alt key is pressed (menubar shown)*/
+#toolbar-menubar:not([inactive]) ~ #TabsToolbar .titlebar-buttonbox-container,
+#toolbar-menubar:not([inactive]) ~ #nav-bar .titlebar-buttonbox-container {
+   background: var(--bg) !important;
+   isolation: isolate !important;
+}
