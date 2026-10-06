@@ -608,3 +608,29 @@ toolbar:not([customizing]) > #nav-bar-customization-target {
    background: var(--bg) !important;
    isolation: isolate !important;
 }
+
+/* 修复：左侧垂直标签栏底部空隙 */
+/* fix: sidebar bottom gap */
+#sidebar-box,
+#sidebar-container,
+#sidebar-box .sidebar-browser-stack,
+#sidebar-box > #sidebar {
+   height: 100% !important;
+   max-height: 100% !important;
+   min-height: 100% !important;
+   margin-bottom: 0 !important;
+   padding-bottom: 0 !important;
+   border-bottom: 0 !important;
+}
+
+/* 去掉可能残留的 splitter 占位 */
+/* remove splitter margins */
+#sidebar-splitter,
+#sidebar-launcher-splitter {
+   display: none !important;
+   height: 0 !important;
+   min-height: 0 !important;
+   margin: 0 !important;
+   padding: 0 !important;
+   border: 0 !important;
+}
